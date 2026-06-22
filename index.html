@@ -105,6 +105,21 @@
   .donut-wrap{position:relative;width:100px;height:100px;flex-shrink:0;}
   .donut-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 
+  /* HERO STRIP */
+  .hero-strip{background:linear-gradient(135deg,rgba(0,210,106,.07),rgba(75,158,255,.05));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;}
+  .hero-kpi{flex:1;text-align:center;padding:0 12px;}
+  .hero-kpi+.hero-kpi{border-left:1px solid rgba(255,255,255,.07);}
+  .hero-num{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.1;}
+
+  /* REGIME DROPDOWN */
+  .regime-select{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;color:var(--text-1);font-size:13px;font-weight:600;padding:7px 12px;cursor:pointer;outline:none;width:100%;transition:border-color .2s;font-family:'Inter',sans-serif;}
+  .regime-select:hover{border-color:rgba(0,210,106,.35);}
+  .regime-select option{background:#131C27;color:var(--text-1);}
+
+  /* NEW REGIME FLASH */
+  .regime-flash{border-radius:10px;padding:12px 16px;font-size:12px;line-height:1.6;margin-top:12px;display:none;}
+  .regime-flash.show{display:block;}
+
   @media(max-width:1024px){.main-grid{grid-template-columns:1fr !important;}}
   ::-webkit-scrollbar{width:6px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
@@ -278,6 +293,28 @@
     <!-- RIGHT — OUTPUTS -->
     <div class="flex flex-col gap-5">
 
+      <!-- HERO STRIP — 3 answers, always visible -->
+      <div class="hero-strip">
+        <p class="eyebrow mb-3">Your retirement snapshot</p>
+        <div class="flex">
+          <div class="hero-kpi">
+            <p class="text-xs mb-1" style="color:var(--text-2)">💸 Monthly Investment</p>
+            <div class="hero-num text-2xl" id="hero-invest" style="color:var(--text-1)">₹4,166</div>
+            <p class="text-xs mt-1" style="color:var(--text-3)">your contribution today</p>
+          </div>
+          <div class="hero-kpi">
+            <p class="text-xs mb-1" style="color:var(--text-2)">🛡️ Tax Saved This Year</p>
+            <div class="hero-num text-2xl" id="hero-tax" style="color:var(--green)">₹15,600</div>
+            <p class="text-xs mt-1" style="color:var(--text-3)">max potential savings</p>
+          </div>
+          <div class="hero-kpi">
+            <p class="text-xs mb-1" style="color:var(--text-2)">🏖️ Monthly Pension at 60</p>
+            <div class="hero-num text-2xl" id="hero-pension" style="color:var(--amber)">₹64,000</div>
+            <p class="text-xs mt-1" style="color:var(--text-3)">lifetime income</p>
+          </div>
+        </div>
+      </div>
+
       <!-- INFLATION TOGGLE -->
       <div class="infl-bar" id="infl-bar" onclick="toggleInflation()">
         <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(155,126,255,.12)">
@@ -298,17 +335,34 @@
         <!-- CARD A: TAX -->
         <div class="card card-green">
           <div class="flex items-center justify-between mb-1">
-            <p class="eyebrow">Tax Saved Today</p>
+            <p class="eyebrow">Tax Savings</p>
             <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:rgba(0,210,106,.12)">
               <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 1L1 5v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="none" stroke="#00D26A" stroke-width="1.5"/></svg>
             </div>
           </div>
-          <p class="text-xs mt-1 mb-4" style="color:var(--text-2)">Instant cash-back on ITR filing</p>
-          <div class="mb-4">
-            <p class="text-xs mb-1" style="color:var(--text-2)">Annual Tax Saved</p>
+
+          <!-- Tax Regime Dropdown -->
+          <div class="mt-2 mb-3">
+            <p class="text-xs mb-1.5" style="color:var(--text-2)">Your Tax Regime</p>
+            <select id="regime-select" class="regime-select" onchange="onRegimeChange()">
+              <option value="0.312">Old Regime — 30% slab (31.2% with cess)</option>
+              <option value="0.208">Old Regime — 20% slab (20.8% with cess)</option>
+              <option value="0.104">Old Regime — 10% slab (10.4% with cess)</option>
+              <option value="0">New Regime — 0% NPS benefit</option>
+            </select>
+          </div>
+
+          <!-- New Regime Flash -->
+          <div id="regime-flash" class="regime-flash" style="background:rgba(155,126,255,.08);border:1px solid rgba(155,126,255,.25);color:#9B7EFF">
+            💡 <strong>New Regime selected.</strong> You won't get tax deductions on NPS — but your wealth still compounds tax-free inside the fund. The 60% lump sum at retirement remains fully tax-exempt under Section 10(12A).
+          </div>
+
+          <div class="mb-3" id="tax-savings-block">
+            <p class="text-xs mb-1" style="color:var(--text-2)">Max Potential Tax Savings/yr</p>
             <div class="kv text-4xl" style="color:var(--green)" id="tax-annual">₹15,600</div>
           </div>
-          <div class="pt-3" style="border-top:1px solid var(--border)">
+
+          <div class="pt-3" style="border-top:1px solid var(--border)" id="tax-detail-block">
             <div class="flex justify-between items-center mb-2">
               <span class="text-xs" style="color:var(--text-2)">Per month equivalent</span>
               <span class="text-sm font-semibold" style="color:var(--text-1)" id="tax-monthly">₹1,300</span>
@@ -326,6 +380,11 @@
               <span class="badge badge-green" id="tax-slab-badge">31.2%</span>
             </div>
           </div>
+
+          <!-- Regime disclaimer -->
+          <p class="text-xs mt-3 pt-3" style="border-top:1px solid var(--border);color:var(--text-3);line-height:1.6">
+            Deduction under <strong style="color:var(--text-2)">Section 80CCD(1B)</strong> — available only in the Old Tax Regime. Max ₹50,000/yr above the 80C limit.
+          </p>
         </div>
 
         <!-- CARD B: NEST EGG -->
@@ -471,7 +530,8 @@
 // ═══════════════════════ STATE ═══════════════════════
 let S = {
   age:30, income:150000, contrib:4166,
-  stepUp:5, corpNPS:true, risk:'aggressive', inflation:false
+  stepUp:5, corpNPS:true, risk:'aggressive', inflation:false,
+  taxRate:0.312  // default: Old Regime 30%
 };
 
 // ════════════════════ FORMAT HELPERS ════════════════════
@@ -568,12 +628,12 @@ function calcCorpus(){
 
 // ════════════════════ TAX ENGINE ════════════════════
 function calcTax(){
-  const {income,contrib,corpNPS}=S;
+  const {income,contrib,corpNPS,taxRate}=S;
   const annualIncome=income*12;
-  const taxRate=annualIncome>1200000 ? 0.312 : 0.208;
   const ded1B=Math.min(contrib*12,50000);
   const ded2=corpNPS ? income*0.10*12 : 0;
-  const taxSaved=(ded1B+ded2)*taxRate;
+  // New Regime: zero NPS deduction benefit
+  const taxSaved=taxRate===0 ? 0 : (ded1B+ded2)*taxRate;
   return {taxSaved,ded1B,ded2,taxRate,annualIncome};
 }
 
@@ -789,12 +849,16 @@ function update(){
   document.getElementById('alloc-g-pct').textContent=alloc.g+'%';
   document.getElementById('blended-return').textContent=alloc.r.toFixed(2)+'%';
 
-  // Tax
-  document.getElementById('tax-annual').textContent=fmtf(Math.round(taxSaved));
-  document.getElementById('tax-monthly').textContent=fmtf(Math.round(taxSaved/12));
-  document.getElementById('deduction-1b').textContent=fmtf(ded1B);
-  document.getElementById('deduction-2').textContent=fmtf(ded2);
-  document.getElementById('tax-slab-badge').textContent=(taxRate*100).toFixed(1)+'%';
+  // Tax — regime-aware
+  const isNewRegime = taxRate===0;
+  document.getElementById('regime-flash').classList.toggle('show', isNewRegime);
+  document.getElementById('tax-savings-block').style.opacity = isNewRegime ? '0.4' : '1';
+  document.getElementById('tax-detail-block').style.display  = isNewRegime ? 'none' : 'block';
+  document.getElementById('tax-annual').textContent = isNewRegime ? '₹0' : fmtf(Math.round(taxSaved));
+  document.getElementById('tax-monthly').textContent = fmtf(Math.round(taxSaved/12));
+  document.getElementById('deduction-1b').textContent = fmtf(ded1B);
+  document.getElementById('deduction-2').textContent  = fmtf(ded2);
+  document.getElementById('tax-slab-badge').textContent = (taxRate*100).toFixed(1)+'%';
 
   // Corpus
   document.getElementById('total-corpus').textContent=fmts(displayCorpus);
@@ -810,6 +874,12 @@ function update(){
   rr.style.color=replacePct>=50?'var(--green)':replacePct>=30?'var(--amber)':'#F87171';
 
   document.getElementById('real-badge').classList.toggle('hidden',!inflation);
+
+  // Hero strip — 3-question summary always visible at top
+  const heroInvest = (S.contrib + (S.corpNPS ? S.income*0.10 : 0));
+  document.getElementById('hero-invest').textContent = fmtf(Math.round(heroInvest));
+  document.getElementById('hero-tax').textContent    = isNewRegime ? '₹0' : fmtf(Math.round(taxSaved));
+  document.getElementById('hero-pension').textContent = fmtf(Math.round(monthlyPension));
 
   // Split
   document.getElementById('split-lump').textContent=fmts(lumpSum);
@@ -852,6 +922,11 @@ function update(){
 }
 
 // ════════════════════ EVENT HANDLERS ════════════════════
+function onRegimeChange(){
+  S.taxRate=parseFloat(document.getElementById('regime-select').value);
+  update();
+}
+
 function onSlider(){
   S.age    =parseInt(document.getElementById('age').value);
   S.income =parseInt(document.getElementById('income').value);
