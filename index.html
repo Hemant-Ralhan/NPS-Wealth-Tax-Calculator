@@ -620,42 +620,41 @@ function calcCorpus() {
   const inflRate = 0.05;
   const INFL_YEARS = yearsToGo;
 
+  // baseContrib stays frozen — used for flat baseline and cumContrib chart line
+  const baseAnnualContrib = (contrib + corpAmount) * 12;
+
   let corpus = 0;
-  let annualContrib = (contrib + corpAmount) * 12;
+  let annualContrib = baseAnnualContrib;  // this one steps up each year
   const chartData = [];
 
-  // Flat baseline for step-up comparison
+  // Flat baseline: same rate compounding, but contribution NEVER steps up
   let corpusFlat = 0;
-  let annualContribFlat = annualContrib;
 
   for (let i = 0; i < yearsToGo; i++) {
     const yr = age + i;
     const alloc = getAlloc(yr, risk);
     const rate = alloc.r / 100;
 
-    // Stepped corpus
+    // Stepped corpus — annualContrib grows each year
     corpus = corpus * (1 + rate) + annualContrib * (1 + rate / 2);
-    // Flat corpus
-    corpusFlat = corpusFlat * (1 + rate) + annualContribFlat * (1 + rate / 2);
+    // Flat corpus — always uses the original base contribution
+    corpusFlat = corpusFlat * (1 + rate) + baseAnnualContrib * (1 + rate / 2);
 
     const nominalCorpus = corpus;
-    // Inflation-adjust: discount by years remaining FROM THIS YEAR to 60
     const discount = Math.pow(1 + inflRate, yearsToGo - i);
     const realCorpus = corpus / discount;
-    const cumContrib = annualContrib * (i + 1); // approx
+    const cumContrib = baseAnnualContrib * (i + 1);
 
     chartData.push({ yr: yr + 1, nominal: nominalCorpus, real: realCorpus, cumContrib });
 
-    // Step up contribution for next year
+    // Step up contribution for NEXT year — happens at end so year 1 uses base
     annualContrib *= (1 + stepUp / 100);
   }
 
   const displayCorpus = inflation ? corpus / Math.pow(1 + inflRate, INFL_YEARS) : corpus;
   const stepUpBenefit = corpus - corpusFlat;
 
-  return { corpus, displayCorpus, chartData, corpAmount, stepUpBenefit, yearsToGo };
-}
-
+  return { corpus, corpusFlat, displayCorpus, chartData, corpAmount, stepUpBenefit, yearsToGo };
 // ═══════════════════════════════════════════════════
 //  TAX ENGINE
 // ═══════════════════════════════════════════════════
