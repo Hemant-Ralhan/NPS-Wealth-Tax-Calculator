@@ -235,6 +235,10 @@
           <input type="range" id="stepup" min="0" max="15" step="1" value="5" class="slider-amber" oninput="onSlider()">
         </div>
         <div class="flex justify-between mt-1"><span class="text-xs" style="color:var(--text-3)">0% flat</span><span class="text-xs" style="color:var(--text-3)">15% max</span></div>
+        <!-- Contextual step-up fact — updates with slider -->
+        <div id="stepup-fact" class="mt-3 text-xs p-3 rounded-lg transition-all" style="background:rgba(155,126,255,.07);border:1px solid rgba(155,126,255,.18);color:#9B7EFF;display:none">
+          <span id="stepup-fact-text"></span>
+        </div>
       </div>
 
       <!-- CORPORATE NPS -->
@@ -742,11 +746,34 @@ function update(){
     document.getElementById('nps-80ccd-status').style.color='var(--amber)';
   }
 
-  // Step-up hint
+  // Step-up hint + contextual fact box
   document.getElementById('stepup-val').textContent=stepUp+'%';
   const hint=stepUp===0?'— Flat contribution, no growth effect':stepUp<5?'⚠ Step-up lags typical inflation (5%)':'✓ Real contribution growth confirmed';
   document.getElementById('stepup-hint').textContent=hint;
   document.getElementById('stepup-hint').style.color=stepUp===0?'var(--text-2)':stepUp<5?'var(--amber)':'var(--green)';
+
+  // Contextual fact box — shows relevant insight at each step-up level
+  const factBox=document.getElementById('stepup-fact');
+  const factText=document.getElementById('stepup-fact-text');
+  const facts={
+    0:  {msg:'💡 Flat contributions mean inflation quietly erodes your real retirement savings every year.', color:'rgba(255,107,107,.07)', border:'rgba(255,107,107,.2)', text:'#FF6B6B'},
+    1:  {msg:'💡 At 1%/yr step-up, your deposits barely keep pace — you are still losing ground to inflation.', color:'rgba(255,107,107,.07)', border:'rgba(255,107,107,.2)', text:'#FF6B6B'},
+    2:  {msg:'💡 At 2%/yr step-up, real corpus growth is marginal. Consider matching your salary hike rate.', color:'rgba(245,166,35,.07)', border:'rgba(245,166,35,.2)', text:'var(--amber)'},
+    3:  {msg:'💡 At 3%/yr, you are closing the gap but still below typical 5–6% salary growth. Try going higher.', color:'rgba(245,166,35,.07)', border:'rgba(245,166,35,.2)', text:'var(--amber)'},
+    4:  {msg:'💡 Almost there — a 4% step-up is close to inflation. One more notch fully neutralises price rise.', color:'rgba(245,166,35,.07)', border:'rgba(245,166,35,.2)', text:'var(--amber)'},
+    5:  {msg:'💡 At 5%/yr step-up, inflation is effectively neutralised — your real wealth is now growing.', color:'rgba(155,126,255,.07)', border:'rgba(155,126,255,.18)', text:'#9B7EFF'},
+    6:  {msg:'💡 6% step-up mirrors a typical annual appraisal. Your NPS grows in line with your lifestyle.', color:'rgba(155,126,255,.07)', border:'rgba(155,126,255,.18)', text:'#9B7EFF'},
+    7:  {msg:'💡 At 7%+ annual step-up, inflation is fully neutralised and retirement coverage recovers significantly.', color:'rgba(0,210,106,.07)', border:'rgba(0,210,106,.2)', text:'var(--green)'},
+    8:  {msg:'🚀 At 8%/yr, your NPS is compounding faster than inflation. Wealth snowball effect kicks in strongly.', color:'rgba(0,210,106,.07)', border:'rgba(0,210,106,.2)', text:'var(--green)'},
+    9:  {msg:'🚀 9%/yr step-up = aggressive growth mode. Your corpus at 60 will be meaningfully larger than peers.', color:'rgba(0,210,106,.07)', border:'rgba(0,210,106,.2)', text:'var(--green)'},
+    10: {msg:'🚀 10% step-up annually is elite territory — typically matching top-performer salary trajectories.', color:'rgba(0,210,106,.07)', border:'rgba(0,210,106,.2)', text:'var(--green)'},
+  };
+  const factData = facts[Math.min(stepUp, 10)] || facts[10];
+  factBox.style.display='block';
+  factBox.style.background=factData.color;
+  factBox.style.borderColor=factData.border;
+  factBox.style.color=factData.text;
+  factText.textContent=factData.msg;
 
   // Corp
   document.getElementById('corp-amount').textContent=fmtf(corpAmount);
