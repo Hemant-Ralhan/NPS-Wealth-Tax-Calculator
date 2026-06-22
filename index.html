@@ -8,175 +8,106 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-deep:    #0D1117;
-    --bg-card:    #131C27;
-    --bg-card2:   #0F1923;
-    --border:     rgba(255,255,255,0.07);
-    --green:      #00D26A;
-    --green-dim:  #00A854;
-    --blue-accent:#4B9EFF;
-    --purple:     #9B7EFF;
-    --amber:      #F5A623;
-    --red-soft:   #FF6B6B;
-    --text-1:     #F0F4F8;
-    --text-2:     #8B9CB6;
-    --text-3:     #4A5568;
-    --slider-track: rgba(255,255,255,0.08);
+    --bg-deep:#0D1117;--bg-card:#131C27;--border:rgba(255,255,255,0.07);
+    --green:#00D26A;--green-dim:#00A854;--blue-accent:#4B9EFF;
+    --purple:#9B7EFF;--amber:#F5A623;--red-soft:#FF6B6B;
+    --text-1:#F0F4F8;--text-2:#8B9CB6;--text-3:#4A5568;
+    --slider-track:rgba(255,255,255,0.08);
   }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg-deep);
-    color: var(--text-1);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh; margin: 0;
-  }
-  body::before {
-    content: ''; position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none; z-index: 0;
-  }
-  .z1 { position: relative; z-index: 1; }
+  *{box-sizing:border-box;}
+  body{background:var(--bg-deep);color:var(--text-1);font-family:'Inter',sans-serif;min-height:100vh;margin:0;}
+  body::before{content:'';position:fixed;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.013) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.013) 1px,transparent 1px);
+    background-size:40px 40px;pointer-events:none;z-index:0;}
+  .z1{position:relative;z-index:1;}
 
-  /* ── SLIDERS ── */
-  input[type=range] {
-    -webkit-appearance: none; width: 100%; height: 4px;
-    background: var(--slider-track); border-radius: 99px; outline: none; cursor: pointer;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 0 3px rgba(0,210,106,0.25), 0 0 12px rgba(0,210,106,0.4);
-    cursor: pointer; transition: box-shadow .15s;
-  }
-  input[type=range]::-webkit-slider-thumb:hover {
-    box-shadow: 0 0 0 6px rgba(0,210,106,0.2), 0 0 20px rgba(0,210,106,0.5);
-  }
-  input[type=range]::-moz-range-thumb {
-    width: 18px; height: 18px; border: none;
-    border-radius: 50%; background: var(--green); cursor: pointer;
-  }
-  .sw { position: relative; }
-  .sf {
-    position: absolute; top: 50%; left: 0; height: 4px; border-radius: 99px;
-    background: linear-gradient(90deg, var(--green-dim), var(--green));
-    transform: translateY(-50%); pointer-events: none; transition: width .05s;
-  }
-  /* Step-up slider accent — amber */
-  .sw-amber .sf { background: linear-gradient(90deg, #c47e00, var(--amber)); }
-  input.slider-amber::-webkit-slider-thumb { background: var(--amber); box-shadow: 0 0 0 3px rgba(245,166,35,0.25); }
+  /* SLIDERS */
+  input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--slider-track);border-radius:99px;outline:none;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(0,210,106,.25),0 0 12px rgba(0,210,106,.4);cursor:pointer;transition:box-shadow .15s;}
+  input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 0 6px rgba(0,210,106,.2),0 0 20px rgba(0,210,106,.5);}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border:none;border-radius:50%;background:var(--green);cursor:pointer;}
+  .sw{position:relative;}
+  .sf{position:absolute;top:50%;left:0;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--green-dim),var(--green));transform:translateY(-50%);pointer-events:none;transition:width .05s;}
+  .sw-amber .sf{background:linear-gradient(90deg,#c47e00,var(--amber));}
+  input.slider-amber::-webkit-slider-thumb{background:var(--amber);box-shadow:0 0 0 3px rgba(245,166,35,.25);}
 
-  /* ── CARDS ── */
-  .card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px;
-  }
-  .card-green { box-shadow: 0 0 40px rgba(0,210,106,0.06), inset 0 1px 0 rgba(255,255,255,0.05); border-color: rgba(0,210,106,0.18); }
-  .card-blue  { border-color: rgba(75,158,255,0.15); }
+  /* CARDS */
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+  .card-green{box-shadow:0 0 40px rgba(0,210,106,.06),inset 0 1px 0 rgba(255,255,255,.05);border-color:rgba(0,210,106,.18);}
+  .card-blue{border-color:rgba(75,158,255,.15);}
 
-  /* ── RISK TABS ── */
-  .risk-tab {
-    flex: 1; padding: 8px 0; border-radius: 8px; font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all .2s; color: var(--text-2);
-    background: transparent; border: none; text-align: center;
-  }
-  .risk-tab.act-agg { background: linear-gradient(135deg,rgba(0,210,106,.2),rgba(0,168,84,.1)); color: var(--green); box-shadow: 0 0 0 1px rgba(0,210,106,.4); }
-  .risk-tab.act-mod { background: linear-gradient(135deg,rgba(75,158,255,.2),rgba(75,158,255,.08)); color: var(--blue-accent); box-shadow: 0 0 0 1px rgba(75,158,255,.4); }
-  .risk-tab.act-con { background: linear-gradient(135deg,rgba(245,166,35,.2),rgba(245,166,35,.08)); color: var(--amber); box-shadow: 0 0 0 1px rgba(245,166,35,.4); }
+  /* RISK TABS */
+  .risk-tab{flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-2);background:transparent;border:none;text-align:center;}
+  .risk-tab.act-agg{background:linear-gradient(135deg,rgba(0,210,106,.2),rgba(0,168,84,.1));color:var(--green);box-shadow:0 0 0 1px rgba(0,210,106,.4);}
+  .risk-tab.act-mod{background:linear-gradient(135deg,rgba(75,158,255,.2),rgba(75,158,255,.08));color:var(--blue-accent);box-shadow:0 0 0 1px rgba(75,158,255,.4);}
+  .risk-tab.act-con{background:linear-gradient(135deg,rgba(245,166,35,.2),rgba(245,166,35,.08));color:var(--amber);box-shadow:0 0 0 1px rgba(245,166,35,.4);}
 
-  /* ── TOGGLE ── */
-  .tt { width: 44px; height: 24px; border-radius: 99px; background: var(--slider-track); position: relative; cursor: pointer; transition: background .2s; border: 1px solid var(--border); flex-shrink: 0; }
-  .tt.on { background: rgba(0,210,106,.3); border-color: var(--green-dim); }
-  .th { width: 18px; height: 18px; border-radius: 50%; background: var(--text-3); position: absolute; top: 2px; left: 2px; transition: all .2s; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
-  .tt.on .th { left: 22px; background: var(--green); box-shadow: 0 0 8px rgba(0,210,106,.5); }
+  /* TOGGLE */
+  .tt{width:44px;height:24px;border-radius:99px;background:var(--slider-track);position:relative;cursor:pointer;transition:background .2s;border:1px solid var(--border);flex-shrink:0;}
+  .tt.on{background:rgba(0,210,106,.3);border-color:var(--green-dim);}
+  .th{width:18px;height:18px;border-radius:50%;background:var(--text-3);position:absolute;top:2px;left:2px;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.4);}
+  .tt.on .th{left:22px;background:var(--green);box-shadow:0 0 8px rgba(0,210,106,.5);}
 
-  /* ── KPI ── */
-  .kv { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1; }
+  /* KPI */
+  .kv{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.1;}
 
-  /* ── ALLOC BAR ── */
-  .abar { height: 8px; border-radius: 99px; overflow: hidden; background: var(--slider-track); display: flex; gap: 2px; }
-  .aseg { height: 100%; transition: width .4s cubic-bezier(.4,0,.2,1); }
+  /* ALLOC BAR */
+  .abar{height:8px;border-radius:99px;overflow:hidden;background:var(--slider-track);display:flex;gap:2px;}
+  .aseg{height:100%;transition:width .4s cubic-bezier(.4,0,.2,1);}
 
-  /* ── INFLATION TOGGLE BAR ── */
-  .infl-bar {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 14px 20px;
-    display: flex; align-items: center; gap-3: gap; gap: 12px;
-    cursor: pointer; transition: border-color .2s, background .2s;
-  }
-  .infl-bar:hover { border-color: rgba(155,126,255,.3); }
-  .infl-bar.on { background: rgba(155,126,255,.06); border-color: rgba(155,126,255,.3); }
-  .infl-pill {
-    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-    padding: 2px 8px; border-radius: 99px; transition: all .2s;
-  }
-  .infl-pill.off { background: rgba(255,255,255,.06); color: var(--text-3); }
-  .infl-pill.on  { background: rgba(155,126,255,.2); color: var(--purple); border: 1px solid rgba(155,126,255,.4); }
+  /* INFLATION BAR */
+  .infl-bar{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s,background .2s;}
+  .infl-bar:hover{border-color:rgba(155,126,255,.3);}
+  .infl-bar.on{background:rgba(155,126,255,.06);border-color:rgba(155,126,255,.3);}
+  .infl-pill{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:99px;transition:all .2s;}
+  .infl-pill.off{background:rgba(255,255,255,.06);color:var(--text-3);}
+  .infl-pill.on{background:rgba(155,126,255,.2);color:var(--purple);border:1px solid rgba(155,126,255,.4);}
 
-  /* ── NUDGE STATES ── */
-  .nudge {
-    border-radius: 14px; padding: 20px 24px;
-    position: relative; overflow: hidden; transition: all .3s;
-  }
-  .nudge::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; }
-  .nudge-red   { background: linear-gradient(135deg,rgba(255,107,107,.1),rgba(255,107,107,.04)); border: 1px solid rgba(255,107,107,.3); }
-  .nudge-red::before   { background: linear-gradient(90deg,transparent,var(--red-soft),transparent); }
-  .nudge-amber { background: linear-gradient(135deg,rgba(245,166,35,.1),rgba(245,166,35,.04)); border: 1px solid rgba(245,166,35,.3); }
-  .nudge-amber::before { background: linear-gradient(90deg,transparent,var(--amber),transparent); }
-  .nudge-green { background: linear-gradient(135deg,rgba(0,210,106,.12),rgba(0,168,84,.05)); border: 1px solid rgba(0,210,106,.3); }
-  .nudge-green::before { background: linear-gradient(90deg,transparent,var(--green),transparent); }
+  /* NUDGE */
+  .nudge{border-radius:14px;padding:20px 24px;position:relative;overflow:hidden;transition:all .3s;}
+  .nudge::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;}
+  .nudge-red{background:linear-gradient(135deg,rgba(255,107,107,.1),rgba(255,107,107,.04));border:1px solid rgba(255,107,107,.3);}
+  .nudge-red::before{background:linear-gradient(90deg,transparent,var(--red-soft),transparent);}
+  .nudge-amber{background:linear-gradient(135deg,rgba(245,166,35,.1),rgba(245,166,35,.04));border:1px solid rgba(245,166,35,.3);}
+  .nudge-amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent);}
+  .nudge-green{background:linear-gradient(135deg,rgba(0,210,106,.12),rgba(0,168,84,.05));border:1px solid rgba(0,210,106,.3);}
+  .nudge-green::before{background:linear-gradient(90deg,transparent,var(--green),transparent);}
 
-  /* ── BADGE ── */
-  .badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; }
-  .badge-green { background: rgba(0,210,106,.12); color: var(--green); border: 1px solid rgba(0,210,106,.25); }
-  .badge-purple { background: rgba(155,126,255,.12); color: var(--purple); border: 1px solid rgba(155,126,255,.25); }
-  .badge-amber  { background: rgba(245,166,35,.12); color: var(--amber); border: 1px solid rgba(245,166,35,.25); }
-  .badge-red    { background: rgba(255,107,107,.12); color: var(--red-soft); border: 1px solid rgba(255,107,107,.25); }
+  /* BADGES */
+  .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;}
+  .badge-green{background:rgba(0,210,106,.12);color:var(--green);border:1px solid rgba(0,210,106,.25);}
+  .badge-purple{background:rgba(155,126,255,.12);color:var(--purple);border:1px solid rgba(155,126,255,.25);}
+  .badge-amber{background:rgba(245,166,35,.12);color:var(--amber);border:1px solid rgba(245,166,35,.25);}
 
-  /* ── PULSE CTA ── */
-  @keyframes pulse-ring {
-    0%   { box-shadow: 0 0 0 0 rgba(0,210,106,.5), 0 4px 24px rgba(0,0,0,.4); }
-    70%  { box-shadow: 0 0 0 10px rgba(0,210,106,0), 0 4px 24px rgba(0,0,0,.4); }
-    100% { box-shadow: 0 0 0 0 rgba(0,210,106,0), 0 4px 24px rgba(0,0,0,.4); }
-  }
-  .btn-primary {
-    background: linear-gradient(135deg,#00D26A,#00A854);
-    color: #000; font-weight: 700; font-size: 15px;
-    padding: 16px 32px; border-radius: 12px; border: none;
-    cursor: pointer; width: 100%;
-    font-family: 'Space Grotesk', sans-serif;
-    animation: pulse-ring 2.2s ease-in-out infinite;
-    transition: transform .15s, filter .15s; letter-spacing: .01em;
-  }
-  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  /* PULSE CTA */
+  @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(0,210,106,.5),0 4px 24px rgba(0,0,0,.4);}70%{box-shadow:0 0 0 10px rgba(0,210,106,0),0 4px 24px rgba(0,0,0,.4);}100%{box-shadow:0 0 0 0 rgba(0,210,106,0),0 4px 24px rgba(0,0,0,.4);}}
+  .btn-primary{background:linear-gradient(135deg,#00D26A,#00A854);color:#000;font-weight:700;font-size:15px;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;width:100%;font-family:'Space Grotesk',sans-serif;animation:pulse-ring 2.2s ease-in-out infinite;transition:transform .15s,filter .15s;letter-spacing:.01em;}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06);}
 
-  /* ── EYEBROW ── */
-  .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
-  .eyebrow-blue { color: var(--blue-accent); }
-  .eyebrow-purple { color: var(--purple); }
+  /* EYEBROW */
+  .eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);}
+  .eyebrow-blue{color:var(--blue-accent);}
+  .eyebrow-purple{color:var(--purple);}
 
-  /* ── VAL POP ── */
-  @keyframes vp { 0% { opacity:.5; transform:scale(.97); } 100% { opacity:1; transform:scale(1); } }
-  .vp { animation: vp .2s ease-out; }
+  /* VAL POP */
+  @keyframes vp{0%{opacity:.5;transform:scale(.97);}100%{opacity:1;transform:scale(1);}}
+  .vp{animation:vp .2s ease-out;}
 
-  /* ── TOOLTIP ── */
-  .tip { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; font-size: 9px; font-weight: 700; background: var(--slider-track); color: var(--text-2); cursor: help; margin-left: 4px; position: relative; }
-  .tip:hover .tip-box { display: block; }
-  .tip-box { display: none; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1e2d40; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-2); width: 210px; z-index: 10; line-height: 1.5; pointer-events: none; }
+  /* TOOLTIP */
+  .tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;font-size:9px;font-weight:700;background:var(--slider-track);color:var(--text-2);cursor:help;margin-left:4px;position:relative;}
+  .tip:hover .tip-box{display:block;}
+  .tip-box{display:none;position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#1e2d40;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--text-2);width:210px;z-index:10;line-height:1.5;pointer-events:none;}
 
-  /* ── HEADER ── */
-  .hbar { background: rgba(13,17,23,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  /* HEADER */
+  .hbar{background:rgba(13,17,23,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
 
-  /* ── DONUT ── */
-  .donut-wrap { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
-  .donut-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  /* DONUT */
+  .donut-wrap{position:relative;width:100px;height:100px;flex-shrink:0;}
+  .donut-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 
-  /* RESPONSIVE */
-  @media (max-width:1024px) { .main-grid { grid-template-columns: 1fr !important; } }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  @media(max-width:1024px){.main-grid{grid-template-columns:1fr !important;}}
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 </style>
 </head>
 <body>
@@ -202,8 +133,6 @@
 </header>
 
 <main class="z1 max-w-7xl mx-auto px-4 sm:px-6 py-8">
-
-  <!-- TITLE -->
   <div class="mb-8">
     <p class="eyebrow mb-2">National Pension System · Upgraded Engine</p>
     <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:700;line-height:1.15;color:var(--text-1)">
@@ -214,18 +143,16 @@
 
   <div class="main-grid grid gap-6" style="grid-template-columns:420px 1fr">
 
-    <!-- ══════════════════════════════════════
-         LEFT — INPUTS
-    ══════════════════════════════════════ -->
+    <!-- LEFT — INPUTS -->
     <div class="flex flex-col gap-5">
 
       <!-- RISK -->
       <div class="card card-green">
         <p class="eyebrow mb-3">Risk Profile</p>
         <div class="flex gap-2 p-1" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px">
-          <button class="risk-tab act-agg" id="tab-aggressive"    onclick="setRisk('aggressive')">🚀 Aggressive</button>
-          <button class="risk-tab"         id="tab-moderate"      onclick="setRisk('moderate')">⚖️ Moderate</button>
-          <button class="risk-tab"         id="tab-conservative"  onclick="setRisk('conservative')">🛡️ Conservative</button>
+          <button class="risk-tab act-agg" id="tab-aggressive"   onclick="setRisk('aggressive')">🚀 Aggressive</button>
+          <button class="risk-tab"         id="tab-moderate"     onclick="setRisk('moderate')">⚖️ Moderate</button>
+          <button class="risk-tab"         id="tab-conservative" onclick="setRisk('conservative')">🛡️ Conservative</button>
         </div>
         <div id="risk-desc" class="mt-3 text-xs p-3 rounded-lg" style="background:rgba(0,210,106,.06);color:var(--text-2);border:1px solid rgba(0,210,106,.12)">
           <strong style="color:var(--green)">LC75 Lifecycle:</strong> Starts 75% equity, auto-shifts to bonds as you near 60. Best for long-horizon growth.
@@ -290,7 +217,7 @@
         <div class="flex justify-between mt-1"><span class="text-xs" style="color:var(--text-3)">₹0</span><span class="text-xs" style="color:var(--text-3)">₹50K</span></div>
       </div>
 
-      <!-- STEP-UP SLIDER ← NEW -->
+      <!-- STEP-UP -->
       <div class="card" style="border-color:rgba(245,166,35,.15)">
         <div class="flex justify-between items-start mb-3">
           <div>
@@ -344,13 +271,10 @@
 
     </div><!-- end left -->
 
-
-    <!-- ══════════════════════════════════════
-         RIGHT — OUTPUTS
-    ══════════════════════════════════════ -->
+    <!-- RIGHT — OUTPUTS -->
     <div class="flex flex-col gap-5">
 
-      <!-- INFLATION TOGGLE BAR ← NEW -->
+      <!-- INFLATION TOGGLE -->
       <div class="infl-bar" id="infl-bar" onclick="toggleInflation()">
         <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(155,126,255,.12)">
           <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 3.5a1 1 0 110 2 1 1 0 010-2zm-1 3.5h2v5H9V9z" fill="#9B7EFF"/></svg>
@@ -359,12 +283,12 @@
           <p class="text-sm font-semibold" style="color:var(--text-1)">Inflation-Adjusted (Real ₹) View
             <span id="infl-pill" class="infl-pill off ml-2">OFF</span>
           </p>
-          <p class="text-xs mt-0.5" id="infl-desc" style="color:var(--text-2)">Toggle to see corpus in today's purchasing power (5% inflation assumed)</p>
+          <p class="text-xs mt-0.5" style="color:var(--text-2)">Toggle to see corpus in today's purchasing power (5% inflation assumed)</p>
         </div>
         <div class="tt" id="infl-toggle" style="pointer-events:none"><div class="th"></div></div>
       </div>
 
-      <!-- OUTPUT CARDS ROW -->
+      <!-- OUTPUT CARDS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
         <!-- CARD A: TAX -->
@@ -439,7 +363,7 @@
         </div>
       </div>
 
-      <!-- PROJECTION CHART -->
+      <!-- CHART -->
       <div class="card">
         <div class="flex items-center justify-between mb-1">
           <div>
@@ -447,36 +371,27 @@
             <p class="text-xs" style="color:var(--text-2)">Year-by-year wealth accumulation</p>
           </div>
           <div class="flex flex-wrap gap-3 text-xs justify-end">
-            <div class="flex items-center gap-1.5"><div class="w-2 h-2 rounded-full" style="background:var(--purple)"></div><span style="color:var(--text-2)">Nominal corpus</span></div>
+            <div class="flex items-center gap-1.5"><div class="w-2 h-2 rounded-full" style="background:var(--purple)"></div><span style="color:var(--text-2)">Nominal</span></div>
             <div class="flex items-center gap-1.5"><div class="w-2 h-2 rounded-full" style="background:var(--green)"></div><span style="color:var(--text-2)">Contributions</span></div>
             <div class="flex items-center gap-1.5" id="real-legend" style="display:none!important">
               <div class="w-2 h-2 rounded-full" style="background:var(--blue-accent)"></div>
-              <span style="color:var(--text-2)">Real ₹ corpus</span>
+              <span style="color:var(--text-2)">Real ₹</span>
             </div>
           </div>
         </div>
         <div style="width:100%;overflow:hidden">
           <svg id="chart-svg" viewBox="0 0 600 190" preserveAspectRatio="none" style="width:100%;height:190px">
             <defs>
-              <linearGradient id="nomGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#9B7EFF" stop-opacity="0.28"/>
-                <stop offset="100%" stop-color="#9B7EFF" stop-opacity="0.02"/>
-              </linearGradient>
-              <linearGradient id="realGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#4B9EFF" stop-opacity="0.22"/>
-                <stop offset="100%" stop-color="#4B9EFF" stop-opacity="0.02"/>
-              </linearGradient>
-              <linearGradient id="contGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#00D26A" stop-opacity="0.2"/>
-                <stop offset="100%" stop-color="#00D26A" stop-opacity="0.02"/>
-              </linearGradient>
+              <linearGradient id="nomGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B7EFF" stop-opacity="0.28"/><stop offset="100%" stop-color="#9B7EFF" stop-opacity="0.02"/></linearGradient>
+              <linearGradient id="realGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4B9EFF" stop-opacity="0.22"/><stop offset="100%" stop-color="#4B9EFF" stop-opacity="0.02"/></linearGradient>
+              <linearGradient id="contGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00D26A" stop-opacity="0.2"/><stop offset="100%" stop-color="#00D26A" stop-opacity="0.02"/></linearGradient>
             </defs>
-            <path id="nom-area"    fill="url(#nomGrad)"/>
-            <path id="real-area"   fill="url(#realGrad)" style="display:none"/>
-            <path id="cont-area"   fill="url(#contGrad)"/>
-            <path id="nom-line"    fill="none" stroke="#9B7EFF" stroke-width="2"   stroke-linecap="round"/>
-            <path id="real-line"   fill="none" stroke="#4B9EFF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5,3" style="display:none"/>
-            <path id="cont-line"   fill="none" stroke="#00D26A" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,3"/>
+            <path id="nom-area"  fill="url(#nomGrad)"/>
+            <path id="real-area" fill="url(#realGrad)" style="display:none"/>
+            <path id="cont-area" fill="url(#contGrad)"/>
+            <path id="nom-line"  fill="none" stroke="#9B7EFF" stroke-width="2"   stroke-linecap="round"/>
+            <path id="real-line" fill="none" stroke="#4B9EFF" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5,3" style="display:none"/>
+            <path id="cont-line" fill="none" stroke="#00D26A" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,3"/>
             <g id="chart-labels"></g>
           </svg>
         </div>
@@ -491,7 +406,7 @@
             <circle id="donut-lump" cx="50" cy="50" r="38" fill="none" stroke="#00D26A" stroke-width="14"
               stroke-dasharray="143 239" stroke-dashoffset="60" stroke-linecap="round"
               style="transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dasharray .5s"/>
-            <circle id="donut-ann"  cx="50" cy="50" r="38" fill="none" stroke="#F5A623" stroke-width="14"
+            <circle id="donut-ann" cx="50" cy="50" r="38" fill="none" stroke="#F5A623" stroke-width="14"
               stroke-dasharray="95 239" stroke-dashoffset="-83" stroke-linecap="round"
               style="transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dasharray .5s"/>
           </svg>
@@ -517,13 +432,19 @@
             <p class="text-xl font-bold ml-4" style="color:var(--amber)" id="split-ann">₹1.3Cr</p>
             <p class="text-xs ml-4" style="color:var(--text-2)">→ <strong id="split-pension" style="color:var(--amber)">₹64K/mo</strong> lifetime pension</p>
           </div>
-          <div class="text-xs p-3 rounded-lg" id="stepup-impact-box" style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.12);color:var(--text-2)">
-            Step-up effect: <strong id="stepup-impact-val" style="color:var(--amber)">+₹0</strong> extra vs flat contribution
+          <!-- STEP-UP IMPACT BOX — fixed -->
+          <div class="p-3 rounded-lg" id="stepup-impact-box" style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.12)">
+            <div class="flex items-center justify-between">
+              <span class="text-xs" style="color:var(--text-2)">Step-up wealth bonus</span>
+              <span class="text-xs font-bold" id="stepup-multiplier" style="color:var(--amber)">1.0×</span>
+            </div>
+            <div class="text-base font-bold mt-0.5" id="stepup-impact-val" style="color:var(--amber)">+₹0</div>
+            <div class="text-xs mt-0.5" style="color:var(--text-2)">extra corpus vs keeping contribution flat forever</div>
           </div>
         </div>
       </div>
 
-      <!-- NUDGE BANNER — 3-STATE ← NEW -->
+      <!-- NUDGE -->
       <div id="nudge-wrap"></div>
 
       <!-- CTA -->
@@ -535,460 +456,428 @@
     </div><!-- end right -->
   </div><!-- end grid -->
 
-  <!-- DISCLAIMER -->
   <div class="mt-8 pt-6" style="border-top:1px solid var(--border)">
-    <p class="text-xs" id="disclaimer-text" style="color:var(--text-3);line-height:1.6">
+    <p class="text-xs" style="color:var(--text-3);line-height:1.6">
       <strong style="color:var(--text-2)">Disclaimer:</strong> Projections use assumed CAGR (Equity 12%, Corp Debt 8%, Govt Bonds 7%) and a 5% inflation rate for real-₹ view. Step-up compounds contributions annually. Actual returns vary. Tax figures are approximate. NPS is subject to market risk. Consult a financial advisor before investing.
     </p>
   </div>
 </main>
 
 <script>
-// ═══════════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════════
+// ═══════════════════════ STATE ═══════════════════════
 let S = {
-  age: 30, income: 150000, contrib: 4166,
-  stepUp: 5, corpNPS: true, risk: 'aggressive',
-  inflation: false
+  age:30, income:150000, contrib:4166,
+  stepUp:5, corpNPS:true, risk:'aggressive', inflation:false
 };
 
-// ═══════════════════════════════════════════════════
-//  FORMAT HELPERS
-// ═══════════════════════════════════════════════════
-function fmt(n) {
-  if (n >= 1e7) return '₹' + (n/1e7).toFixed(2) + 'Cr';
-  if (n >= 1e5) return '₹' + (n/1e5).toFixed(2) + 'L';
-  if (n >= 1e3) return '₹' + (n/1e3).toFixed(1) + 'K';
-  return '₹' + Math.round(n).toLocaleString('en-IN');
+// ════════════════════ FORMAT HELPERS ════════════════════
+function fmt(n){
+  if(n>=1e7) return '₹'+(n/1e7).toFixed(2)+'Cr';
+  if(n>=1e5) return '₹'+(n/1e5).toFixed(2)+'L';
+  if(n>=1e3) return '₹'+(n/1e3).toFixed(1)+'K';
+  return '₹'+Math.round(n).toLocaleString('en-IN');
 }
-function fmts(n) {
-  if (n >= 1e7) return '₹' + (n/1e7).toFixed(1) + 'Cr';
-  if (n >= 1e5) return '₹' + (n/1e5).toFixed(1) + 'L';
-  return '₹' + Math.round(n).toLocaleString('en-IN');
+function fmts(n){
+  if(n>=1e7) return '₹'+(n/1e7).toFixed(1)+'Cr';
+  if(n>=1e5) return '₹'+(n/1e5).toFixed(1)+'L';
+  return '₹'+Math.round(n).toLocaleString('en-IN');
 }
-function fmtf(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
-function pop(id) {
-  const el = document.getElementById(id); if (!el) return;
+function fmtf(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+function pop(id){
+  const el=document.getElementById(id); if(!el) return;
   el.classList.remove('vp'); void el.offsetWidth; el.classList.add('vp');
 }
-function setFill(sid, fid, mn, mx) {
-  const v = parseFloat(document.getElementById(sid).value);
-  document.getElementById(fid).style.width = ((v-mn)/(mx-mn)*100) + '%';
+function setFill(sid,fid,mn,mx){
+  const v=parseFloat(document.getElementById(sid).value);
+  document.getElementById(fid).style.width=((v-mn)/(mx-mn)*100)+'%';
 }
 
-// ═══════════════════════════════════════════════════
-//  ASSET ALLOCATION (LC75)
-// ═══════════════════════════════════════════════════
-function getAlloc(age, risk) {
-  if (risk === 'moderate')     return { e:50, c:20, g:30, r:9.50 };
-  if (risk === 'conservative') return { e:25, c:20, g:55, r:8.00 };
-  // Aggressive LC75
-  // Ages ≤35 all use the same 75/10/15 band; clamp up to 35 for the lookup
-  if (age <= 35) return { e:75, c:10, g:15, r:10.85 };
-  const tbl = {
-    36:{e:71,c:11,g:18,r:10.66},
-    37:{e:67,c:12,g:21,r:10.47}, 38:{e:63,c:13,g:24,r:10.28},
-    39:{e:59,c:14,g:27,r:10.09}, 40:{e:55,c:15,g:30,r:9.90},
-    41:{e:51,c:16,g:33,r:9.71},  42:{e:47,c:17,g:36,r:9.52},
-    43:{e:43,c:18,g:39,r:9.33},  44:{e:39,c:19,g:42,r:9.14},
-    45:{e:35,c:20,g:45,r:8.95}
+// ════════════════════ ASSET ALLOCATION (LC75) ════════════════════
+function getAlloc(age,risk){
+  if(risk==='moderate')     return {e:50,c:20,g:30,r:9.50};
+  if(risk==='conservative') return {e:25,c:20,g:55,r:8.00};
+  // Aggressive LC75 — ages <=35 all share 75/10/15
+  if(age<=35) return {e:75,c:10,g:15,r:10.85};
+  const tbl={
+    36:{e:71,c:11,g:18,r:10.66}, 37:{e:67,c:12,g:21,r:10.47},
+    38:{e:63,c:13,g:24,r:10.28}, 39:{e:59,c:14,g:27,r:10.09},
+    40:{e:55,c:15,g:30,r:9.90},  41:{e:51,c:16,g:33,r:9.71},
+    42:{e:47,c:17,g:36,r:9.52},  43:{e:43,c:18,g:39,r:9.33},
+    44:{e:39,c:19,g:42,r:9.14},  45:{e:35,c:20,g:45,r:8.95}
   };
-  if (tbl[age]) return tbl[age];
-  if (age >= 46 && age <= 50) {
-    const e = 35 - (age-45)*3;
-    const c = 18;
-    const g = 100 - e - c;
-    const r = parseFloat((0.12*e/100 + 0.08*c/100 + 0.07*g/100).toFixed(4))*100;
-    return { e, c, g, r: +r.toFixed(2) };
+  if(tbl[age]) return tbl[age];
+  if(age>=46 && age<=50){
+    const e=35-(age-45)*3, c=18, g=100-e-c;
+    const r=parseFloat((0.12*e/100+0.08*c/100+0.07*g/100).toFixed(4))*100;
+    return {e,c,g,r:+r.toFixed(2)};
   }
-  if (age >= 51 && age <= 54) {
-    const r = +(0.12*0.19+0.08*0.18+0.07*0.63).toFixed(4)*100;
-    return { e:19, c:18, g:63, r: +r.toFixed(2) };
+  if(age>=51 && age<=54){
+    const r=+(0.12*0.19+0.08*0.18+0.07*0.63).toFixed(4)*100;
+    return {e:19,c:18,g:63,r:+r.toFixed(2)};
   }
-  const r = +(0.12*0.15+0.08*0.15+0.07*0.70).toFixed(4)*100;
-  return { e:15, c:15, g:70, r: +r.toFixed(2) };
+  const r=+(0.12*0.15+0.08*0.15+0.07*0.70).toFixed(4)*100;
+  return {e:15,c:15,g:70,r:+r.toFixed(2)};
 }
 
-// ═══════════════════════════════════════════════════
-//  CORPUS ENGINE (year-by-year + step-up + inflation)
-// ═══════════════════════════════════════════════════
-function calcCorpus() {
-  const { age, income, contrib, corpNPS, risk, stepUp, inflation } = S;
-  const corpAmount = corpNPS ? income * 0.10 : 0;
-  const yearsToGo = 60 - age;
-  const inflRate = 0.05;
-  const INFL_YEARS = yearsToGo;
+// ════════════════════ CORPUS ENGINE ════════════════════
+// FIX: baseAnnualContrib is frozen; annualContrib steps up each year.
+// corpusFlat uses baseAnnualContrib every iteration — genuinely diverges.
+function calcCorpus(){
+  const {age,income,contrib,corpNPS,risk,stepUp,inflation}=S;
+  const corpAmount=corpNPS ? income*0.10 : 0;
+  const yearsToGo=60-age;
+  const inflRate=0.05;
 
-let corpus = 0;
-  let annualContrib = (contrib + corpAmount) * 12;
-  const chartData = [];
+  const baseAnnualContrib=(contrib+corpAmount)*12; // FROZEN baseline
+  let corpus=0;
+  let annualContrib=baseAnnualContrib; // steps up each year
+  let corpusFlat=0;                    // never steps up
+  const chartData=[];
 
-  // Flat baseline for step-up comparison
-  let corpusFlat = 0;
-  let annualContribFlat = annualContrib;
-
-  for (let i = 0; i < yearsToGo; i++) {
-    const yr = age + i;
-    const alloc = getAlloc(yr, risk);
-    const rate = alloc.r / 100;
+  for(let i=0;i<yearsToGo;i++){
+    const yr=age+i;
+    const alloc=getAlloc(yr,risk);
+    const rate=alloc.r/100;
 
     // Stepped corpus
-    corpus = corpus * (1 + rate) + annualContrib * (1 + rate / 2);
-    // Flat corpus
-    corpusFlat = corpusFlat * (1 + rate) + annualContribFlat * (1 + rate / 2);
+    corpus=corpus*(1+rate)+annualContrib*(1+rate/2);
+    // Flat corpus — always uses frozen base
+    corpusFlat=corpusFlat*(1+rate)+baseAnnualContrib*(1+rate/2);
 
-    const nominalCorpus = corpus;
-    const discount = Math.pow(1 + inflRate, yearsToGo - i);
-    const realCorpus = corpus / discount;
-    const cumContrib = annualContrib * (i + 1);
+    const nominalCorpus=corpus;
+    const discount=Math.pow(1+inflRate,yearsToGo-i);
+    const realCorpus=corpus/discount;
+    const cumContrib=baseAnnualContrib*(i+1); // chart baseline
 
-    chartData.push({ yr: yr + 1, nominal: nominalCorpus, real: realCorpus, cumContrib });
+    chartData.push({yr:yr+1,nominal:nominalCorpus,real:realCorpus,cumContrib});
 
-    // Step up contribution for next year
-    annualContrib *= (1 + stepUp / 100);
+    // Step up AFTER recording this year — so year 1 uses base
+    annualContrib*=(1+stepUp/100);
   }
 
-  const displayCorpus = inflation ? corpus / Math.pow(1 + inflRate, INFL_YEARS) : corpus;
-  const stepUpBenefit = corpus - corpusFlat;
+  const displayCorpus=inflation ? corpus/Math.pow(1+inflRate,yearsToGo) : corpus;
+  const stepUpBenefit=corpus-corpusFlat;
 
-  return { corpus, displayCorpus, chartData, corpAmount, stepUpBenefit, yearsToGo };
-// ═══════════════════════════════════════════════════
-//  TAX ENGINE
-// ═══════════════════════════════════════════════════
-function calcTax() {
-  const { income, contrib, corpNPS } = S;
-  const annualIncome = income * 12;
-  const taxRate = annualIncome > 1200000 ? 0.312 : 0.208;
-  const ded1B = Math.min(contrib * 12, 50000);
-  const ded2   = corpNPS ? income * 0.10 * 12 : 0;
-  const taxSaved = (ded1B + ded2) * taxRate;
-  return { taxSaved, ded1B, ded2, taxRate, annualIncome };
+  // Return ALL values needed by update()
+  return {corpus,corpusFlat,displayCorpus,chartData,corpAmount,stepUpBenefit,yearsToGo};
 }
 
-// ═══════════════════════════════════════════════════
-//  CHART
-// ═══════════════════════════════════════════════════
-function updateChart(chartData, showReal) {
-  if (!chartData.length) return;
-  const W=600, H=190, PL=10, PR=10, PT=8, PB=22;
-  const n = chartData.length;
-  const maxV = Math.max(...chartData.map(d => d.nominal));
+// ════════════════════ TAX ENGINE ════════════════════
+function calcTax(){
+  const {income,contrib,corpNPS}=S;
+  const annualIncome=income*12;
+  const taxRate=annualIncome>1200000 ? 0.312 : 0.208;
+  const ded1B=Math.min(contrib*12,50000);
+  const ded2=corpNPS ? income*0.10*12 : 0;
+  const taxSaved=(ded1B+ded2)*taxRate;
+  return {taxSaved,ded1B,ded2,taxRate,annualIncome};
+}
 
-  function cx(i) { return PL + (i/(n-1||1))*(W-PL-PR); }
-  function cy(v) { return H - PB - (v/maxV)*(H-PB-PT); }
+// ════════════════════ CHART ════════════════════
+function updateChart(chartData,showReal){
+  if(!chartData.length) return;
+  const W=600,H=190,PL=10,PR=10,PT=8,PB=22;
+  const n=chartData.length;
+  const maxV=Math.max(...chartData.map(d=>d.nominal));
 
-  const nomPts   = chartData.map((d,i)=>`${cx(i)},${cy(d.nominal)}`);
-  const realPts  = chartData.map((d,i)=>`${cx(i)},${cy(d.real)}`);
-  const contPts  = chartData.map((d,i)=>`${cx(i)},${cy(d.cumContrib)}`);
+  function cx(i){ return PL+(i/(n-1||1))*(W-PL-PR); }
+  function cy(v){ return H-PB-(v/maxV)*(H-PB-PT); }
 
-  const nomLine  = 'M'+nomPts.join('L');
-  const realLine = 'M'+realPts.join('L');
-  const contLine = 'M'+contPts.join('L');
-  const bx0=cx(0), bxN=cx(n-1), bY=H-PB;
+  const nomPts  = chartData.map((d,i)=>`${cx(i)},${cy(d.nominal)}`);
+  const realPts = chartData.map((d,i)=>`${cx(i)},${cy(d.real)}`);
+  const contPts = chartData.map((d,i)=>`${cx(i)},${cy(d.cumContrib)}`);
 
-  document.getElementById('nom-line').setAttribute('d', nomLine);
-  document.getElementById('real-line').setAttribute('d', realLine);
-  document.getElementById('cont-line').setAttribute('d', contLine);
-  document.getElementById('nom-area').setAttribute('d', nomLine+`L${bxN},${bY}L${bx0},${bY}Z`);
-  document.getElementById('real-area').setAttribute('d', realLine+`L${bxN},${bY}L${bx0},${bY}Z`);
-  document.getElementById('cont-area').setAttribute('d', contLine+`L${bxN},${bY}L${bx0},${bY}Z`);
+  const nomLine  ='M'+nomPts.join('L');
+  const realLine ='M'+realPts.join('L');
+  const contLine ='M'+contPts.join('L');
+  const bx0=cx(0),bxN=cx(n-1),bY=H-PB;
 
-  const showOrHide = showReal ? '' : 'none';
-  document.getElementById('real-line').style.display  = showOrHide;
-  document.getElementById('real-area').style.display  = showOrHide;
-  const rleg = document.getElementById('real-legend');
-  rleg.style.setProperty('display', showReal ? 'flex' : 'none', 'important');
+  document.getElementById('nom-line').setAttribute('d',nomLine);
+  document.getElementById('real-line').setAttribute('d',realLine);
+  document.getElementById('cont-line').setAttribute('d',contLine);
+  document.getElementById('nom-area').setAttribute('d',nomLine+`L${bxN},${bY}L${bx0},${bY}Z`);
+  document.getElementById('real-area').setAttribute('d',realLine+`L${bxN},${bY}L${bx0},${bY}Z`);
+  document.getElementById('cont-area').setAttribute('d',contLine+`L${bxN},${bY}L${bx0},${bY}Z`);
 
-  // X labels
-  const labG = document.getElementById('chart-labels');
-  labG.innerHTML = '';
-  const step = Math.max(1, Math.floor(n/5));
-  for (let i = 0; i < n; i += step) {
-    const lx = cx(i);
-    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-    t.setAttribute('x',lx); t.setAttribute('y',H-4);
-    t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','9'); t.setAttribute('fill','#4A5568');
-    t.textContent = 'Age '+(chartData[i].yr-1);
+  const d=showReal?'':'none';
+  document.getElementById('real-line').style.display=d;
+  document.getElementById('real-area').style.display=d;
+  document.getElementById('real-legend').style.setProperty('display',showReal?'flex':'none','important');
+
+  const labG=document.getElementById('chart-labels');
+  labG.innerHTML='';
+  const step=Math.max(1,Math.floor(n/5));
+  for(let i=0;i<n;i+=step){
+    const lx=cx(i);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',lx);t.setAttribute('y',H-4);
+    t.setAttribute('text-anchor','middle');t.setAttribute('font-size','9');t.setAttribute('fill','#4A5568');
+    t.textContent='Age '+(chartData[i].yr-1);
     labG.appendChild(t);
-    const gl = document.createElementNS('http://www.w3.org/2000/svg','line');
-    gl.setAttribute('x1',lx); gl.setAttribute('y1',PT); gl.setAttribute('x2',lx); gl.setAttribute('y2',H-PB);
-    gl.setAttribute('stroke','rgba(255,255,255,0.04)'); gl.setAttribute('stroke-width','1');
+    const gl=document.createElementNS('http://www.w3.org/2000/svg','line');
+    gl.setAttribute('x1',lx);gl.setAttribute('y1',PT);gl.setAttribute('x2',lx);gl.setAttribute('y2',H-PB);
+    gl.setAttribute('stroke','rgba(255,255,255,0.04)');gl.setAttribute('stroke-width','1');
     labG.appendChild(gl);
   }
 }
 
-// ═══════════════════════════════════════════════════
-//  NUDGE — 3 STATES
-// ═══════════════════════════════════════════════════
-function renderNudge(monthlyPension, income, stepUp, inflation, yearsToGo) {
-  const targetPension = income * 0.5;
-  const coveragePct   = Math.min(Math.round((monthlyPension / targetPension) * 100), 100);
-  const gapPct        = 100 - coveragePct;
-  const shortfall     = Math.max(0, targetPension - monthlyPension);
-  const extraNeeded   = shortfall > 0 ? Math.ceil(shortfall / Math.max(yearsToGo * 0.8, 1)) : 0;
-
-  const wrap = document.getElementById('nudge-wrap');
-
-  if (coveragePct >= 100) {
-    // GREEN — on track
-    wrap.innerHTML = `
-      <div class="nudge nudge-green">
-        <div class="flex items-center gap-4">
-          <div class="text-3xl">🎯</div>
-          <div>
-            <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--green)">Retirement Goal Achieved!</p>
-            <p class="text-sm mt-1" style="color:var(--text-2)">Your projected pension exceeds 50% income replacement. You're fully retirement-ready.</p>
-          </div>
-          <div class="hidden sm:flex flex-col items-end flex-shrink-0 ml-auto">
-            <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--green)">${coveragePct}%</div>
-          </div>
-        </div>
-      </div>`;
-  } else if (coveragePct >= 60) {
-    // AMBER — neutral / partial
-    let inflTip = '';
-    if (inflation && stepUp < 5) {
-      inflTip = `<p class="text-xs mt-2 p-2 rounded-lg" style="background:rgba(155,126,255,.08);border:1px solid rgba(155,126,255,.2);color:#9B7EFF">💡 With inflation on, raise your step-up above 5% to recover coverage — <strong>no extra monthly deposit needed.</strong></p>`;
-    }
-    wrap.innerHTML = `
-      <div class="nudge nudge-amber">
-        <div class="flex items-start gap-4">
-          <div class="text-2xl flex-shrink-0">⚡</div>
-          <div class="flex-1">
-            <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--amber)">You're ${gapPct}% away from a bulletproof retirement.</p>
-            <p class="text-sm mt-1" style="color:var(--text-2)">Add <strong style="color:var(--text-1)">${fmtf(extraNeeded)}/month</strong> to NPS to hit 50% income replacement.</p>
-            ${inflTip}
-          </div>
-          <div class="hidden sm:flex flex-col items-end flex-shrink-0">
-            <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--amber)">${coveragePct}%</div>
-          </div>
-        </div>
-        ${nudgeBar(coveragePct, 'var(--amber)', targetPension)}
-      </div>`;
-  } else {
-    // RED — critical gap
-    let stepUpTip = '';
-    if (inflation && stepUp < 7) {
-      stepUpTip = `<p class="text-xs mt-2 p-2 rounded-lg" style="background:rgba(155,126,255,.08);border:1px solid rgba(155,126,255,.2);color:#9B7EFF">💡 At 7%+ annual step-up, inflation is fully neutralised and coverage recovers significantly.</p>`;
-    }
-    wrap.innerHTML = `
-      <div class="nudge nudge-red">
-        <div class="flex items-start gap-4">
-          <div class="text-2xl flex-shrink-0">🚨</div>
-          <div class="flex-1">
-            <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--red-soft)">Critical retirement gap — only ${coveragePct}% covered.</p>
-            <p class="text-sm mt-1" style="color:var(--text-2)">Divert an additional <strong style="color:var(--text-1)">${fmtf(extraNeeded)}/month</strong> to eliminate your retirement shortfall of <strong style="color:var(--red-soft)">${fmts(shortfall)}/mo</strong>.</p>
-            ${stepUpTip}
-          </div>
-          <div class="hidden sm:flex flex-col items-end flex-shrink-0">
-            <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--red-soft)">${coveragePct}%</div>
-          </div>
-        </div>
-        ${nudgeBar(coveragePct, 'var(--red-soft)', targetPension)}
-      </div>`;
-  }
+// ════════════════════ NUDGE — 3 STATES ════════════════════
+function nudgeBar(pct,color,targetPension){
+  return `<div class="mt-4">
+    <div class="flex justify-between mb-1 text-xs">
+      <span style="color:var(--text-2)">Current pension coverage</span>
+      <span style="color:var(--text-1)">${pct}% of target</span>
+    </div>
+    <div class="h-2 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.06)">
+      <div class="h-full rounded-full transition-all duration-500" style="width:${pct}%;background:${color}"></div>
+    </div>
+    <div class="flex justify-between mt-1 text-xs">
+      <span style="color:var(--text-2)">₹0</span>
+      <span style="color:var(--text-2)">Target: <strong style="color:var(--text-1)">${fmtf(Math.round(targetPension))}/mo</strong></span>
+    </div>
+  </div>`;
 }
 
-function nudgeBar(pct, color, targetPension) {
-  return `
-    <div class="mt-4">
-      <div class="flex justify-between mb-1 text-xs">
-        <span style="color:var(--text-2)">Current pension coverage</span>
-        <span style="color:var(--text-1)">${pct}% of target</span>
-      </div>
-      <div class="h-2 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.06)">
-        <div class="h-full rounded-full transition-all duration-500" style="width:${pct}%;background:${color}"></div>
-      </div>
-      <div class="flex justify-between mt-1 text-xs">
-        <span style="color:var(--text-2)">₹0</span>
-        <span style="color:var(--text-2)">Target: <strong style="color:var(--text-1)">${fmtf(Math.round(targetPension))}/mo</strong></span>
+function renderNudge(monthlyPension,income,stepUp,inflation,yearsToGo){
+  const targetPension=income*0.5;
+  const coveragePct=Math.min(Math.round((monthlyPension/targetPension)*100),100);
+  const gapPct=100-coveragePct;
+  const shortfall=Math.max(0,targetPension-monthlyPension);
+  const extraNeeded=shortfall>0 ? Math.ceil(shortfall/Math.max(yearsToGo*0.8,1)) : 0;
+  const wrap=document.getElementById('nudge-wrap');
+
+  if(coveragePct>=100){
+    wrap.innerHTML=`<div class="nudge nudge-green">
+      <div class="flex items-center gap-4">
+        <div class="text-3xl">🎯</div>
+        <div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--green)">Retirement Goal Achieved!</p>
+          <p class="text-sm mt-1" style="color:var(--text-2)">Your projected pension exceeds 50% income replacement. You're fully retirement-ready.</p>
+        </div>
+        <div class="hidden sm:flex flex-col items-end flex-shrink-0 ml-auto">
+          <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--green)">${coveragePct}%</div>
+        </div>
       </div>
     </div>`;
+  } else if(coveragePct>=60){
+    let inflTip='';
+    if(inflation && stepUp<5){
+      inflTip=`<p class="text-xs mt-2 p-2 rounded-lg" style="background:rgba(155,126,255,.08);border:1px solid rgba(155,126,255,.2);color:#9B7EFF">💡 With inflation on, raise your step-up above 5% to recover coverage — <strong>no extra monthly deposit needed.</strong></p>`;
+    }
+    wrap.innerHTML=`<div class="nudge nudge-amber">
+      <div class="flex items-start gap-4">
+        <div class="text-2xl flex-shrink-0">⚡</div>
+        <div class="flex-1">
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--amber)">You're ${gapPct}% away from a bulletproof retirement.</p>
+          <p class="text-sm mt-1" style="color:var(--text-2)">Add <strong style="color:var(--text-1)">${fmtf(extraNeeded)}/month</strong> to NPS to hit 50% income replacement.</p>
+          ${inflTip}
+        </div>
+        <div class="hidden sm:flex flex-col items-end flex-shrink-0">
+          <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--amber)">${coveragePct}%</div>
+        </div>
+      </div>
+      ${nudgeBar(coveragePct,'var(--amber)',targetPension)}
+    </div>`;
+  } else {
+    let stepUpTip='';
+    if(inflation && stepUp<7){
+      stepUpTip=`<p class="text-xs mt-2 p-2 rounded-lg" style="background:rgba(155,126,255,.08);border:1px solid rgba(155,126,255,.2);color:#9B7EFF">💡 At 7%+ annual step-up, inflation is fully neutralised and coverage recovers significantly.</p>`;
+    }
+    wrap.innerHTML=`<div class="nudge nudge-red">
+      <div class="flex items-start gap-4">
+        <div class="text-2xl flex-shrink-0">🚨</div>
+        <div class="flex-1">
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--red-soft)">Critical retirement gap — only ${coveragePct}% covered.</p>
+          <p class="text-sm mt-1" style="color:var(--text-2)">Divert an additional <strong style="color:var(--text-1)">${fmtf(extraNeeded)}/month</strong> to eliminate your retirement shortfall of <strong style="color:var(--red-soft)">${fmts(shortfall)}/mo</strong>.</p>
+          ${stepUpTip}
+        </div>
+        <div class="hidden sm:flex flex-col items-end flex-shrink-0">
+          <div class="text-xs mb-1" style="color:var(--text-2)">Coverage</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--red-soft)">${coveragePct}%</div>
+        </div>
+      </div>
+      ${nudgeBar(coveragePct,'var(--red-soft)',targetPension)}
+    </div>`;
+  }
 }
 
-// ═══════════════════════════════════════════════════
-//  MAIN UPDATE
-// ═══════════════════════════════════════════════════
-function update() {
-  const { age, income, contrib, corpNPS, risk, stepUp, inflation } = S;
-  const yearsToGo = 60 - age;
+// ════════════════════ MAIN UPDATE ════════════════════
+function update(){
+  const {age,income,contrib,corpNPS,risk,stepUp,inflation}=S;
+  const yearsToGo=60-age;
 
-  const { corpus, displayCorpus, chartData, corpAmount, stepUpBenefit } = calcCorpus();
-  const lumpSum = displayCorpus * 0.6;
-  const annuity  = displayCorpus * 0.4;
-  const monthlyPension = (annuity * 0.06) / 12;
+  // corpus, corpusFlat both returned — needed for multiplier
+  const {corpus,corpusFlat,displayCorpus,chartData,corpAmount,stepUpBenefit}=calcCorpus();
+  const lumpSum=displayCorpus*0.6;
+  const annuity=displayCorpus*0.4;
+  const monthlyPension=(annuity*0.06)/12;
 
-  const { taxSaved, ded1B, ded2, taxRate, annualIncome } = calcTax();
+  const {taxSaved,ded1B,ded2,taxRate,annualIncome}=calcTax();
 
-  // ── Sliders fill
-  setFill('age',    'age-fill',    18,      55);
-  setFill('income', 'income-fill', 50000,   1000000);
-  setFill('contrib','contrib-fill',0,       50000);
-  setFill('stepup', 'stepup-fill', 0,       15);
+  // Sliders
+  setFill('age','age-fill',18,55);
+  setFill('income','income-fill',50000,1000000);
+  setFill('contrib','contrib-fill',0,50000);
+  setFill('stepup','stepup-fill',0,15);
 
-  // ── Age
-  document.getElementById('age-val').textContent      = age;
-  document.getElementById('years-to-go').textContent  = yearsToGo;
-  document.getElementById('alloc-age-badge').textContent = 'Age '+age;
+  // Age
+  document.getElementById('age-val').textContent=age;
+  document.getElementById('years-to-go').textContent=yearsToGo;
+  document.getElementById('alloc-age-badge').textContent='Age '+age;
 
-  // ── Income
-  const incShort = income >= 1e5 ? '₹'+(income/1e5).toFixed(1)+'L' : '₹'+(income/1e3).toFixed(0)+'K';
-  document.getElementById('income-val').textContent   = incShort;
-  document.getElementById('annual-income').textContent = '₹'+(annualIncome/1e5).toFixed(1)+'L';
+  // Income
+  const incShort=income>=1e5?'₹'+(income/1e5).toFixed(1)+'L':'₹'+(income/1e3).toFixed(0)+'K';
+  document.getElementById('income-val').textContent=incShort;
+  document.getElementById('annual-income').textContent='₹'+(annualIncome/1e5).toFixed(1)+'L';
 
-  // ── Contribution
-  document.getElementById('contrib-val').textContent  = fmtf(contrib);
-  const annualContrib = contrib * 12;
-  if (annualContrib <= 50000) {
-    document.getElementById('nps-80ccd-status').textContent = '✓ Within ₹50K/yr 80CCD(1B) limit';
-    document.getElementById('nps-80ccd-status').style.color = 'var(--green)';
+  // Contribution
+  document.getElementById('contrib-val').textContent=fmtf(contrib);
+  if(contrib*12<=50000){
+    document.getElementById('nps-80ccd-status').textContent='✓ Within ₹50K/yr 80CCD(1B) limit';
+    document.getElementById('nps-80ccd-status').style.color='var(--green)';
   } else {
-    document.getElementById('nps-80ccd-status').textContent = '⚠ Above ₹50K cap — extra not deductible';
-    document.getElementById('nps-80ccd-status').style.color = 'var(--amber)';
+    document.getElementById('nps-80ccd-status').textContent='⚠ Above ₹50K cap — extra not deductible';
+    document.getElementById('nps-80ccd-status').style.color='var(--amber)';
   }
 
-  // ── Step-up
-  document.getElementById('stepup-val').textContent = stepUp + '%';
-  const hint = stepUp === 0
-    ? '— Flat contribution, no growth effect'
-    : stepUp < 5
-    ? '⚠ Step-up lags typical inflation (5%)'
-    : '✓ Real contribution growth confirmed';
-  const hintColor = stepUp === 0 ? 'var(--text-2)' : stepUp < 5 ? 'var(--amber)' : 'var(--green)';
-  document.getElementById('stepup-hint').textContent  = hint;
-  document.getElementById('stepup-hint').style.color  = hintColor;
+  // Step-up hint
+  document.getElementById('stepup-val').textContent=stepUp+'%';
+  const hint=stepUp===0?'— Flat contribution, no growth effect':stepUp<5?'⚠ Step-up lags typical inflation (5%)':'✓ Real contribution growth confirmed';
+  document.getElementById('stepup-hint').textContent=hint;
+  document.getElementById('stepup-hint').style.color=stepUp===0?'var(--text-2)':stepUp<5?'var(--amber)':'var(--green)';
 
-  // ── Corp
-  document.getElementById('corp-amount').textContent     = fmtf(corpAmount);
-  document.getElementById('corp-row').style.opacity      = corpNPS ? '1' : '0.4';
+  // Corp
+  document.getElementById('corp-amount').textContent=fmtf(corpAmount);
+  document.getElementById('corp-row').style.opacity=corpNPS?'1':'0.4';
 
-  // ── Allocation
-  const alloc = getAlloc(age, risk);
-  document.getElementById('alloc-e').style.width = alloc.e + '%';
-  document.getElementById('alloc-c').style.width = alloc.c + '%';
-  document.getElementById('alloc-g').style.width = alloc.g + '%';
-  document.getElementById('alloc-e-pct').textContent = alloc.e + '%';
-  document.getElementById('alloc-c-pct').textContent = alloc.c + '%';
-  document.getElementById('alloc-g-pct').textContent = alloc.g + '%';
-  document.getElementById('blended-return').textContent = alloc.r.toFixed(2) + '%';
+  // Allocation
+  const alloc=getAlloc(age,risk);
+  document.getElementById('alloc-e').style.width=alloc.e+'%';
+  document.getElementById('alloc-c').style.width=alloc.c+'%';
+  document.getElementById('alloc-g').style.width=alloc.g+'%';
+  document.getElementById('alloc-e-pct').textContent=alloc.e+'%';
+  document.getElementById('alloc-c-pct').textContent=alloc.c+'%';
+  document.getElementById('alloc-g-pct').textContent=alloc.g+'%';
+  document.getElementById('blended-return').textContent=alloc.r.toFixed(2)+'%';
 
-  // ── Tax
-  document.getElementById('tax-annual').textContent    = fmtf(Math.round(taxSaved));
-  document.getElementById('tax-monthly').textContent   = fmtf(Math.round(taxSaved/12));
-  document.getElementById('deduction-1b').textContent  = fmtf(ded1B);
-  document.getElementById('deduction-2').textContent   = fmtf(ded2);
-  document.getElementById('tax-slab-badge').textContent = (taxRate*100).toFixed(1)+'%';
+  // Tax
+  document.getElementById('tax-annual').textContent=fmtf(Math.round(taxSaved));
+  document.getElementById('tax-monthly').textContent=fmtf(Math.round(taxSaved/12));
+  document.getElementById('deduction-1b').textContent=fmtf(ded1B);
+  document.getElementById('deduction-2').textContent=fmtf(ded2);
+  document.getElementById('tax-slab-badge').textContent=(taxRate*100).toFixed(1)+'%';
 
-  // ── Corpus (with/without real-₹)
-  document.getElementById('total-corpus').textContent  = fmts(displayCorpus);
-  document.getElementById('lump-sum').textContent      = fmts(lumpSum);
-  document.getElementById('monthly-pension').textContent = fmtf(Math.round(monthlyPension));
-  document.getElementById('corpus-label-sub').textContent = inflation
-    ? `Real purchasing power at age 60 (${yearsToGo}yr discount)`
-    : 'Projected at age 60 (nominal)';
+  // Corpus
+  document.getElementById('total-corpus').textContent=fmts(displayCorpus);
+  document.getElementById('lump-sum').textContent=fmts(lumpSum);
+  document.getElementById('monthly-pension').textContent=fmtf(Math.round(monthlyPension));
+  document.getElementById('corpus-label-sub').textContent=inflation
+    ?`Real purchasing power at age 60 (${yearsToGo}yr discount)`
+    :'Projected at age 60 (nominal)';
 
-  const replacePct = Math.round((monthlyPension / income) * 100);
-  const rr = document.getElementById('replacement-ratio');
-  rr.textContent   = replacePct + '%';
-  rr.style.color   = replacePct >= 50 ? 'var(--green)' : replacePct >= 30 ? 'var(--amber)' : '#F87171';
+  const replacePct=Math.round((monthlyPension/income)*100);
+  const rr=document.getElementById('replacement-ratio');
+  rr.textContent=replacePct+'%';
+  rr.style.color=replacePct>=50?'var(--green)':replacePct>=30?'var(--amber)':'#F87171';
 
-  // ── Real badge
-  const rb = document.getElementById('real-badge');
-  rb.classList.toggle('hidden', !inflation);
+  document.getElementById('real-badge').classList.toggle('hidden',!inflation);
 
-  // ── Split
-  document.getElementById('split-lump').textContent   = fmts(lumpSum);
-  document.getElementById('split-ann').textContent    = fmts(annuity);
-  document.getElementById('split-pension').textContent = fmtf(Math.round(monthlyPension)) + '/mo';
+  // Split
+  document.getElementById('split-lump').textContent=fmts(lumpSum);
+  document.getElementById('split-ann').textContent=fmts(annuity);
+  document.getElementById('split-pension').textContent=fmtf(Math.round(monthlyPension))+'/mo';
 
-  // ── Step-up impact
-  const sign = stepUpBenefit >= 0 ? '+' : '';
-  document.getElementById('stepup-impact-val').textContent = sign + fmts(Math.abs(stepUpBenefit)) + ' vs flat';
+  // Step-up impact box — hide at 0%, show multiplier when active
+  const impactBox=document.getElementById('stepup-impact-box');
+  if(stepUp===0){
+    impactBox.style.display='none';
+  } else {
+    impactBox.style.display='block';
+    const sign=stepUpBenefit>=0?'+':'';
+    document.getElementById('stepup-impact-val').textContent=sign+fmts(Math.abs(stepUpBenefit))+' extra corpus';
+    const multiplier=corpusFlat>0?(corpus/corpusFlat).toFixed(2):'1.00';
+    document.getElementById('stepup-multiplier').textContent=multiplier+'×';
+  }
 
-  // ── Inflation bar
-  const inflBar    = document.getElementById('infl-bar');
-  const inflToggle = document.getElementById('infl-toggle');
-  const inflPill   = document.getElementById('infl-pill');
-  const inflHBadge = document.getElementById('infl-header-badge');
-  inflBar.classList.toggle('on', inflation);
-  inflToggle.classList.toggle('on', inflation);
-  inflPill.textContent = inflation ? 'ON' : 'OFF';
-  inflPill.className = 'infl-pill ' + (inflation ? 'on' : 'off') + ' ml-2';
-  inflHBadge.classList.toggle('hidden', !inflation);
-  document.getElementById('chart-disclaimer').textContent = inflation
-    ? `Real ₹ view active — dashed blue line shows corpus in today's purchasing power (5% inflation, ${yearsToGo}yr discount).`
-    : 'Nominal values. Toggle inflation view above to see real purchasing power.';
+  // Inflation bar
+  const inflBar=document.getElementById('infl-bar');
+  const inflToggle=document.getElementById('infl-toggle');
+  const inflPill=document.getElementById('infl-pill');
+  inflBar.classList.toggle('on',inflation);
+  inflToggle.classList.toggle('on',inflation);
+  inflPill.textContent=inflation?'ON':'OFF';
+  inflPill.className='infl-pill '+(inflation?'on':'off')+' ml-2';
+  document.getElementById('infl-header-badge').classList.toggle('hidden',!inflation);
+  document.getElementById('chart-disclaimer').textContent=inflation
+    ?`Real ₹ view active — dashed blue line shows corpus in today's purchasing power (5% inflation, ${yearsToGo}yr discount).`
+    :'Nominal values. Toggle inflation view above to see real purchasing power.';
 
-  // ── Nudge
-  renderNudge(monthlyPension, income, stepUp, inflation, yearsToGo);
+  // Nudge
+  renderNudge(monthlyPension,income,stepUp,inflation,yearsToGo);
 
-  // ── Animate
+  // Animate
   ['total-corpus','tax-annual','monthly-pension'].forEach(pop);
 
-  // ── Chart
-  updateChart(chartData, inflation);
+  // Chart
+  updateChart(chartData,inflation);
 }
 
-// ═══════════════════════════════════════════════════
-//  EVENT HANDLERS
-// ═══════════════════════════════════════════════════
-function onSlider() {
-  S.age    = parseInt(document.getElementById('age').value);
-  S.income = parseInt(document.getElementById('income').value);
-  S.contrib = parseInt(document.getElementById('contrib').value);
-  S.stepUp = parseInt(document.getElementById('stepup').value);
+// ════════════════════ EVENT HANDLERS ════════════════════
+function onSlider(){
+  S.age    =parseInt(document.getElementById('age').value);
+  S.income =parseInt(document.getElementById('income').value);
+  S.contrib=parseInt(document.getElementById('contrib').value);
+  S.stepUp =parseInt(document.getElementById('stepup').value);
   update();
 }
 
-function setRisk(r) {
-  S.risk = r;
-  ['aggressive','moderate','conservative'].forEach(k => {
-    const el = document.getElementById('tab-'+k);
-    el.className = 'risk-tab';
-    if (k === r) el.classList.add(k==='aggressive'?'act-agg':k==='moderate'?'act-mod':'act-con');
+function setRisk(r){
+  S.risk=r;
+  ['aggressive','moderate','conservative'].forEach(k=>{
+    const el=document.getElementById('tab-'+k);
+    el.className='risk-tab';
+    if(k===r) el.classList.add(k==='aggressive'?'act-agg':k==='moderate'?'act-mod':'act-con');
   });
-  const descs = {
-    aggressive: `<strong style="color:var(--green)">LC75 Lifecycle:</strong> Starts 75% equity, auto-shifts to bonds near 60. Best for long horizons.`,
-    moderate:   `<strong style="color:var(--blue-accent)">Balanced:</strong> Fixed 9.5% blended. Equal equity-debt mix for medium risk.`,
+  const descs={
+    aggressive:`<strong style="color:var(--green)">LC75 Lifecycle:</strong> Starts 75% equity, auto-shifts to bonds near 60. Best for long horizons.`,
+    moderate:`<strong style="color:var(--blue-accent)">Balanced:</strong> Fixed 9.5% blended. Equal equity-debt mix for medium risk.`,
     conservative:`<strong style="color:var(--amber)">Conservative:</strong> Fixed 8% blended. Govt bonds dominant, capital preservation.`
   };
-  const descColors = { aggressive: ['rgba(0,210,106,.06)','rgba(0,210,106,.12)'], moderate: ['rgba(75,158,255,.06)','rgba(75,158,255,.12)'], conservative: ['rgba(245,166,35,.06)','rgba(245,166,35,.12)'] };
-  const rd = document.getElementById('risk-desc');
-  rd.innerHTML = descs[r];
-  rd.style.background   = descColors[r][0];
-  rd.style.borderColor  = descColors[r][1];
+  const dc={aggressive:['rgba(0,210,106,.06)','rgba(0,210,106,.12)'],moderate:['rgba(75,158,255,.06)','rgba(75,158,255,.12)'],conservative:['rgba(245,166,35,.06)','rgba(245,166,35,.12)']};
+  const rd=document.getElementById('risk-desc');
+  rd.innerHTML=descs[r];
+  rd.style.background=dc[r][0];
+  rd.style.borderColor=dc[r][1];
   update();
 }
 
-function toggleCorp() {
-  S.corpNPS = !S.corpNPS;
-  document.getElementById('corp-toggle').classList.toggle('on', S.corpNPS);
+function toggleCorp(){
+  S.corpNPS=!S.corpNPS;
+  document.getElementById('corp-toggle').classList.toggle('on',S.corpNPS);
   update();
 }
 
-function toggleInflation() {
-  S.inflation = !S.inflation;
+function toggleInflation(){
+  S.inflation=!S.inflation;
   update();
 }
 
-function handleCTA() {
-  const modal = document.createElement('div');
-  modal.style.cssText = 'position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)';
-  modal.innerHTML = `<div style="background:#131C27;border:1px solid rgba(0,210,106,.3);border-radius:20px;padding:32px;max-width:380px;width:90%;text-align:center">
+function handleCTA(){
+  const modal=document.createElement('div');
+  modal.style.cssText='position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)';
+  modal.innerHTML=`<div style="background:#131C27;border:1px solid rgba(0,210,106,.3);border-radius:20px;padding:32px;max-width:380px;width:90%;text-align:center">
     <div style="font-size:48px;margin-bottom:16px">🎉</div>
     <p style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#F0F4F8;margin-bottom:8px">Ready to Activate!</p>
     <p style="font-size:13px;color:#8B9CB6;margin-bottom:24px;line-height:1.6">In the live app, this opens PFRDA-compliant NPS account setup with UPI auto-debit — under 2 minutes, zero paperwork.</p>
     <button onclick="this.closest('[style]').remove()" style="background:linear-gradient(135deg,#00D26A,#00A854);color:#000;font-weight:700;padding:12px 32px;border-radius:10px;border:none;cursor:pointer;font-size:14px;font-family:'Space Grotesk',sans-serif">Got it</button>
   </div>`;
   document.body.appendChild(modal);
-  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+  modal.addEventListener('click',e=>{ if(e.target===modal) modal.remove(); });
 }
 
-// ── INIT
+// INIT
 update();
 </script>
 </body>
